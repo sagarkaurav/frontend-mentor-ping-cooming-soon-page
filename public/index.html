@@ -22,7 +22,7 @@
     <div class="flex flex-col justify-center min-w-full mt-6 md:flex-row">
       <div>
         <input id="email-input" name="email_address" title="Email Address" class="block min-w-full p-2 px-4 border rounded-full" placeholder="Your email address..." type="email" name="email">
-        <span id="error-box" class="hidden p-1 text-xs text-center text-red-500 md:text-left">Please provide a valid email address</span>
+        <span id="error-box" class="invisible block p-1 text-xs text-center text-red-500 md:text-left">Please provide a valid email address</span>
       </div>
       <button id="notify-btn" class="block p-2 mt-2 text-sm font-bold text-white bg-blue-700 rounded-full shadow-xl md:ml-4 md:h-10 md:px-8 md:mt-0 hover:bg-blue-600">
         Notify Me
@@ -51,7 +51,7 @@
   <footer>
     <p class="attribution">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="#">Your Name Here</a>.
+      Coded by <a href="https://github.com/sagarkaurav">Sagar Kaurav</a>.
     </p>
   </footer>
   <script>
@@ -64,8 +64,7 @@
       let emailInput = document.getElementById('email-input');
       emailInput.addEventListener('keypress', function(){
         if(errorBox.classList.contains('block')) {
-          errorBox.classList.add('hidden');
-          errorBox.classList.remove('block');
+          errorBox.classList.add('invisible');
         }
         if(emailInput.classList.contains('border-red-400')) {
           emailInput.classList.remove('border-red-400');
@@ -75,9 +74,8 @@
         let emailValue = emailInput.value;
         console.log(emailValue);
         if(!email_regx.test(emailValue)) {
-          if(errorBox.classList.contains('hidden')) {
-            errorBox.classList.remove('hidden');
-            errorBox.classList.add('block');
+          if(errorBox.classList.contains('invisible')) {
+            errorBox.classList.remove('invisible');
           }
           if(!emailInput.classList.contains('border-red-400')){
             emailInput.classList.add('border-red-400');
