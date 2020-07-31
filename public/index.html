@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Frontend Mentor | Ping coming soon page</title>
+</head>
+<body>
+  <div class="p-12">
+    <img class="mx-auto" src="./images/logo.svg" alt="ping logo">
+    <h1 class="mt-12 text-xl text-center text-gray-600 md:text-3xl">
+      We are launching <span class="font-bold text-gray-900">soon!</span>
+    </h1>
+    <h3 class="mt-4 font-light text-center text-gray-700 md:mt-2">
+      Subscribe and get notified
+    </h3>
+    
+    <div class="flex flex-col justify-center min-w-full mt-6 md:flex-row">
+      <div>
+        <input id="email-input" class="block min-w-full p-2 px-4 border rounded-full" placeholder="Your email address..." type="email" name="email">
+        <span id="error-box" class="hidden p-1 text-xs text-center text-red-500 md:text-left">Please provide a valid email address</span>
+      </div>
+      <button id="notify-btn" class="block p-2 mt-2 text-sm font-bold text-white bg-blue-700 rounded-full shadow-xl md:ml-4 md:h-10 md:px-8 md:mt-0 hover:bg-blue-600">
+        Notify Me
+      </button>
+    </div>
+    <div class="flex justify-center">
+      <img class="mt-12 md:max-w-xl" src="./images/illustration-dashboard.png" alt="">
+    </div>
+  </div>
+
+  <div class="flex justify-center text-center text-blue-500">
+    <div class="flex items-center justify-center w-12 h-12 mx-2 border-2 border-blue-100 border-solid rounded-full">
+      <i class="fab fa-facebook-f"></i>
+    </div>
+    <div class="flex items-center justify-center w-12 h-12 mx-2 border-2 border-blue-100 border-solid rounded-full">
+      <i class="fab fa-twitter"></i>
+    </div>
+    <div class="flex items-center justify-center w-12 h-12 mx-2 border-2 border-blue-100 border-solid rounded-full">
+      <i class="fab fa-instagram"></i>
+    </div>
+  </div>
+  <div class="mt-2 mb-2 text-sm font-light text-center text-gray-500">
+    &copy; Copyright Ping. All rights reserved.
+  </div>
+
+  <footer>
+    <p class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">Your Name Here</a>.
+    </p>
+  </footer>
+  <script>
+    window.onload = function() {
+      // This regular expression is from stackoverflow
+      // solution link: https://stackoverflow.com/a/46181
+      const email_regx = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+      let notifyBtn = document.getElementById('notify-btn');
+      let errorBox = document.getElementById('error-box');
+      let emailInput = document.getElementById('email-input');
+      emailInput.addEventListener('keypress', function(){
+        if(errorBox.classList.contains('block')) {
+          errorBox.classList.add('hidden');
+          errorBox.classList.remove('block');
+        }
+        if(emailInput.classList.contains('border-red-400')) {
+          emailInput.classList.remove('border-red-400');
+        }
+      });
+      notifyBtn.addEventListener('click', function(){
+        let emailValue = emailInput.value;
+        console.log(emailValue);
+        if(!email_regx.test(emailValue)) {
+          if(errorBox.classList.contains('hidden')) {
+            errorBox.classList.remove('hidden');
+            errorBox.classList.add('block');
+          }
+          if(!emailInput.classList.contains('border-red-400')){
+            emailInput.classList.add('border-red-400');
+          }
+        }
+      }); 
+    }
+  </script>
+</body>
+</html>
